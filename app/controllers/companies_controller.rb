@@ -6,14 +6,16 @@ class CompaniesController < ApplicationController
     render :edit
   end
 
-  # def index
-  #   @company = Company.all
-  #   render :index
-  # end
+  def index
+    @company = Company.all
+    render :index
+  end
 
-  # def show
-  #   @company = Company.find(params[:id])
-  # end
+  def show
+    @type = Type.find(params[:type_id])
+    @company = Company.find(params[:id])
+    render :show
+  end
 
   def new
     @type = Type.find(params[:type_id])
@@ -48,6 +50,6 @@ class CompaniesController < ApplicationController
 
 private
   def company_params
-    params.require(:company).permit(:name)
+    params.require(:company).permit(:name, :address, :phone, :website, :hours, :picture)
   end
 end

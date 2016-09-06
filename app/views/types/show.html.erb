@@ -6,7 +6,11 @@
   <ul>
     <% @type.companies.each do |company| %>
       <li>
-        <%= company.name %> |
+        <%= link_to company.name, type_company_path(@type, company) %>  
+        <%= link_to "Edit", edit_type_company_path(@type, company) %> |
+        <%= link_to "Delete", type_company_path(@type, company),
+                                 :data => {:confirm => "Are you sure?",
+                                                :method => "delete"} %>
       </li>
     <% end %>
   </ul>
