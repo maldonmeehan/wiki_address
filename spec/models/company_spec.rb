@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Type do
+describe Company do
   it { should validate_presence_of :name }
-  it { should should have_many :companies }
+  it { should belong_to :type }
 end

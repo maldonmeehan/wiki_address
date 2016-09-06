@@ -1,7 +1,22 @@
 <h1><%= @type.name %></h1>
 
-<p><%= link_to "Return to Business Types", types_path %></p>
-<p><%= link_to "Edit", edit_type_path(@type) %></p>
-<p><%= link_to "Delete", type_path(@type),
-                :data => {:confirm => "You sure?",
-                          :method => "delete"} %></p>
+<% if @type.companies.any? %>
+  <h4>Here are the companies for this list:</h4>
+
+  <ul>
+    <% @type.companies.each do |company| %>
+      <li>
+        <%= company.name %> |
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no companies yet!</p>
+<% end %>
+
+<p><%= link_to "Add a company", new_type_company_path(@type) %></p>
+<p><%= link_to "Delete Type", type_path(@type),
+                        :data => {:confirm => "Are you sure?",
+                                       :method => "delete"} %></p>
+
+<p><%= link_to "Return to types", types_path %></p>
